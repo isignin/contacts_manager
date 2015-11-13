@@ -9,6 +9,10 @@ ContactManager.module("ContactsApp", function(ContactsApp, ContactManager, Backb
 			ContactsApp.List.Controller.listContacts();
 		}
 	};
+	ContactManager.on("contacts:list", function(){
+		ContactManager.navigate("contacts");
+		API.listContacts();
+	});
 	
 	ContactManager.addInitializer(function(){
 		new ContactsApp.Router({
