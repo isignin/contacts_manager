@@ -22,13 +22,17 @@
 	<script type="text/template" id="contact-view">
 	   <h1><%= firstName %> <%= lastName %></h1>
 	   <p><strong>Phone Number: </strong> <%= phoneNumber %></p>
+	   <hr />
+	   <div><a href="#contacts" class="btn btn-small">Return to Contact List</a></div>
 	</script>
 	<script type="text/template" id="contact-list">
 	   <thead>
 	     <tr>
 	       <th>First Name</th>
 	       <th>Last Name</th>
-	       <th>Actions </th>
+	       <th>Actions &nbsp; <a href="#contacts" class="btn btn-small js-show">
+	         <i class="icon-plus"></i> New</a>
+	       </th>
 	      </tr>
 	    </thead>
 	    <tbody>
@@ -45,6 +49,9 @@
 	         <i class="icon-remove"></i> Delete
 	        </button>
 	    </td>
+	</script>
+	<script type="text/template" id="missing-contact-view">
+	   <div class="alert alert-errors">This contact does not exist!</div>
 	</script>
 	
 	<script src="./assets/js/vendor/jquery-1.10.2.js"></script>
