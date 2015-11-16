@@ -1,34 +1,54 @@
 ContactManager.module("Entities", function(Entities, ContactManager,Backbone, Marionette, $, _){
 	Entities.Contact = Backbone.Model.extend({
+		urlRoot: "contacts",
 		defaults: {
-		     phoneNumber: "No Phone Number Available"
+		   firstName: "",
+		   lastName: "",  
+		   phoneNumber: ""
 	      }
 	});
+	var contact = Entities.Contact;
+	Entities.configureStorage(contact);
 	
 	Entities.ContactCollection = Backbone.Collection.extend({
+		url: "contacts",
 		model: Entities.Contact,
 		comparator: function(Model){
 		      var fullname = Model.get('firstName')+" "+Model.get('lastName');
 		      return fullname;
 	    }
 	});
-	var contacts;
+
+	Entities.configureStorage(Entities.ContactCollection);
+	
 	var initializeContacts = function(){
-		contacts = new Entities.ContactCollection([
+		var contacts = new Entities.ContactCollection([
 			{id: 1, firstName: "Alice", lastName: "Arten", phoneNumber: "123-456-7890"},
 			{id: 2, firstName: "Bob", lastName: "Brigham", phoneNumber: "123-456-7890"},
 			{id: 3, firstName: "Alice", lastName: "Campbell", phoneNumber: "123-456-7890"},
 			{id: 4, firstName: "Charlie", lastName: "Campbell", phoneNumber: "123-456-7890"}
 		]);
+		contacts.forEach(function(contact){
+		   contact.save();	
+		});
+		return contacts;
 	};
 	
 	var API = {
 	    getContactEntities: function(){
-		   if(contacts === undefined){
-		      initializeContacts();	
-		   }
+		   var contacts = new Entities.ContactCollection();
+		   contacts.fetch();
+		   if(contacts.length === 0){
+			 return initializeContacts;
+		   };
 		   return contacts;
-	    }	
+	    },
+	
+	    getContactEntity: function(contactId){
+	       var contact = new Entities.Contact({id: contactId});
+	       contact.fectch();
+	       return contact;
+	   }	
 	};
 	
 	ContactManager.reqres.setHandler("contact:entities",function(){
