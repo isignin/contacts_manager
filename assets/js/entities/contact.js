@@ -7,8 +7,8 @@ ContactManager.module("Entities", function(Entities, ContactManager,Backbone, Ma
 		   phoneNumber: ""
 	      }
 	});
-	var contact = Entities.Contact;
-	Entities.configureStorage(contact);
+
+	Entities.configureStorage(ContactManager.Entities.Contact);
 	
 	Entities.ContactCollection = Backbone.Collection.extend({
 		url: "contacts",
@@ -19,7 +19,7 @@ ContactManager.module("Entities", function(Entities, ContactManager,Backbone, Ma
 	    }
 	});
 
-	Entities.configureStorage(Entities.ContactCollection);
+	Entities.configureStorage(ContactManager.Entities.ContactCollection);
 	
 	var initializeContacts = function(){
 		var contacts = new Entities.ContactCollection([
@@ -53,5 +53,9 @@ ContactManager.module("Entities", function(Entities, ContactManager,Backbone, Ma
 	
 	ContactManager.reqres.setHandler("contact:entities",function(){
 	    return API.getContactEntities();	
+	});
+	
+	ContactManager.reqres.setHandler("contact:entity",function(id){
+	    return API.getContactEntity(id);	
 	});
 });
