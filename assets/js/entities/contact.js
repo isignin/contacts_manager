@@ -57,6 +57,7 @@ ContactManager.module("Entities", function(Entities, ContactManager,Backbone, Ma
 	    getContactEntity: function(contactId){
 	       var contact = new Entities.Contact({id: contactId});
 	       var defer = $.Deferred();
+
 	       contact.fetch({
 		     success: function(data){
 			    defer.resolve(data);
@@ -65,6 +66,7 @@ ContactManager.module("Entities", function(Entities, ContactManager,Backbone, Ma
 			    defer.resolve(undefined);
 		     }
 	       });
+
 	       return defer.promise();
 	   }	
 	};

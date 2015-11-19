@@ -2,3 +2,7 @@ body {
 	/* 60px to move the container down and make room for navigation bar */
 	padding-top: 60px;
 }
+#loading-view-text {
+	text-align: center;
+	top: 50%;
+}
