@@ -1,11 +1,15 @@
 ContactManager.module("Entities", function(Entities, ContactManager, Backbone, Marionette, $, _){
  	var findStorageKey = function(entity){
     if(entity.urlRoot){
-	   return entity.urlRoot;
+	   return _.result(entity,"urlRoot");
     }
     if(entity.url){
-  	   return entity.url;
+  	   return _.result(entity,"url");
     }
+    if(entity.collection && entity.collection.url){
+	    return _.result(entity.collection, "url");
+    }
+
     throw new Error("Unable to determine storage key");
  };
  

@@ -6,7 +6,7 @@ ContactManager.module("ContactsApp.List", function(List, ContactManager, Backbon
 				collection: contacts
 			});
 			contactsListView.on("childview:contact:delete", function(childView,model){
-				contacts.remove(model);
+				model.destroy();
 			});
 			contactsListView.on("childview:contact:show", function(childView, model){
 			   ContactManager.trigger("contact:show",model.get("id"));		

@@ -8,7 +8,7 @@ ContactManager.module("Entities", function(Entities, ContactManager,Backbone, Ma
 	      }
 	});
 
-	Entities.configureStorage(ContactManager.Entities.Contact);
+	Entities.configureStorage(Entities.Contact);
 	
 	Entities.ContactCollection = Backbone.Collection.extend({
 		url: "contacts",
@@ -19,7 +19,7 @@ ContactManager.module("Entities", function(Entities, ContactManager,Backbone, Ma
 	    }
 	});
 
-	Entities.configureStorage(ContactManager.Entities.ContactCollection);
+	Entities.configureStorage(Entities.ContactCollection);
 	
 	var initializeContacts = function(){
 		var contacts = new Entities.ContactCollection([
@@ -39,14 +39,14 @@ ContactManager.module("Entities", function(Entities, ContactManager,Backbone, Ma
 		   var contacts = new Entities.ContactCollection();
 		   contacts.fetch();
 		   if(contacts.length === 0){
-			 return initializeContacts;
+			 return initializeContacts();
 		   };
 		   return contacts;
 	    },
 	
 	    getContactEntity: function(contactId){
 	       var contact = new Entities.Contact({id: contactId});
-	       contact.fectch();
+	       contact.fetch();
 	       return contact;
 	   }	
 	};
