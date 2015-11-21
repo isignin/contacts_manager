@@ -6,6 +6,7 @@ ContactManager.module("Entities", function(Entities, ContactManager,Backbone, Ma
 		   lastName: "",  
 		   phoneNumber: ""
 	      },
+	
 	    validate: function(attrs, options){
 		  var errors = {};
 		  if(! attrs.firstName) {

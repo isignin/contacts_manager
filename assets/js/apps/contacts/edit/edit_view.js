@@ -16,12 +16,12 @@ ContactManager.module("ContactsApp.Edit", function(Edit, ContactManager, Backbon
 		     $form.find(".help-inline.error").each(function(){
 			       $(this).remove();
 		     });
-		     $form.find(".control=group.error").each(function(){
+		     $form.find(".control-group.error").each(function(){
 			    $(this).removeClass("error");
 		     });
 	     }
 	     var markErrors = function(value, key){
-		   var $controlGroup = self.$el.find("#contact-" + key).parent();
+		   var $controlGroup = $view.find("#contact-" + key).parent();
 		   var $errorEl = $("<span>", {class: "help-inline error", text: value});
 		   $controlGroup.append($errorEl).addClass("error");
 	     }
