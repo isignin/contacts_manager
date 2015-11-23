@@ -12,6 +12,18 @@ ContactManager.module("ContactsApp.List", function(List, ContactManager, Backbon
 				contactsListView.on("childview:contact:show", function(childView, model){
 				   ContactManager.trigger("contact:show",model.get("id"));		
 				});
+				contactsListView.on("childview:contact:edit", function(childView, model){
+				    var view= new ContactManager.ContactsApp.Edit.Contact({
+					    model: model  
+				    });	
+				    view.on("show", function(){
+					   this.$el.dialog({
+						   modal: true,
+						   width: "auto"
+					   });
+				    });
+				    ContactManager.dialogRegion.show(view);
+				});
 				contactsListView.on("childview:contact:delete", function(childView,model){
 					model.destroy();
 				});

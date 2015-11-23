@@ -4,7 +4,8 @@ ContactManager.module("ContactsApp.List", function(List, ContactManager, Backbon
 		template: "#contact-list-item",
 		events: {
 		    "click": "highlightName",
-		    "click button.js-show": "showClicked",
+		    "click td a.js-show": "showClicked",
+		    "click td a.js-edit": "editClicked",
 		    "click button.js-delete": "deleteClicked"
 	      },
 	      highlightName: function(e){
@@ -14,6 +15,11 @@ ContactManager.module("ContactsApp.List", function(List, ContactManager, Backbon
 		     e.preventDefault();
 		     e.stopPropagation();
 		     this.trigger("contact:show", this.model);
+	      },
+	      editClicked: function(e){
+		     e.preventDefault();
+		     e.stopPropagation();
+		     this.trigger("contact:edit",this.model);
 	      },
 	      deleteClicked: function(e){
 		    e.stopPropagation();
