@@ -20,7 +20,7 @@ ContactManager.module("ContactsApp.List", function(List, ContactManager, Backbon
 				    view.on("form:submit", function(data){
 					  if(model.save(data)){
 					    childView.render();
-					    ContactMnager.dialogRegion.close();
+					    ContactManager.dialogRegion.close();
 					    childView.flash("Success");	
 					  } else {
 					     view.triggerMethod("form:data:invalid", model.validationError);	
