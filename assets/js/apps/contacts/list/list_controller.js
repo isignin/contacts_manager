@@ -14,13 +14,17 @@ ContactManager.module("ContactsApp.List", function(List, ContactManager, Backbon
 				});
 				contactsListView.on("childview:contact:edit", function(childView, model){
 				    var view= new ContactManager.ContactsApp.Edit.Contact({
-					    model: model  
+					    model: model,
+					    asModal: true
 				    });	
-				    view.on("show", function(){
-					   this.$el.dialog({
-						   modal: true,
-						   width: "auto"
-					   });
+				    view.on("form:submit", function(data){
+					  if(model.save(data)){
+					    childView.render();
+					    ContactMnager.dialogRegion.close();
+					    childView.flash("Success");	
+					  } else {
+					     view.triggerMethod("form:data:invalid", model.validationError);	
+					  }
 				    });
 				    ContactManager.dialogRegion.show(view);
 				});
