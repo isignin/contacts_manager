@@ -10,6 +10,7 @@ ContactManager.module("ContactsApp.Edit", function(Edit, ContactManager, Backbon
 				var $title = $("h1>", { text: this.title });
 				this.$el.prepend($title);
 			}
+			this.$(".js-submit").text("Update Contact");
 		}
 	});
 });
