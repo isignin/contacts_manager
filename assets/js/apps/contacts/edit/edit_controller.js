@@ -12,7 +12,8 @@ ContactManager.module("ContactsApp.Edit", function(Edit, ContactManager, Backbon
 		   var view;
 		   if(contact !== undefined){
 			  view = new Edit.Contact({
-			     model: contact	
+			     model: contact,
+			     generateTitle: true
 			  });
 			  view.on("form:submit", function(data){
 				if(contact.save(data)){
@@ -22,7 +23,7 @@ ContactManager.module("ContactsApp.Edit", function(Edit, ContactManager, Backbon
 				}
 			  });
 		    } else {
-			   view = new ContactManager.ContactsApps.Show.MissingContact();
+			   view = new ContactManager.ContactsApp.Show.MissingContact();
 		    }
 		ContactManager.mainRegion.show(view);
 		});
