@@ -9,8 +9,25 @@ ContactManager.module("ContactsApp.List", function(List, ContactManager, Backbon
 			var contactsListPanel = new List.Panel();
 			
 			$.when(fetchingContacts).done(function(contacts){
+				var filteredContacts = ContactManager.Entities.FilteredCollection({
+					collection: contacts,
+					filterFunction: function(filterCriterion){
+						var criterion = filterCriterion.toLowerCase();
+						return function(contact){
+							if(contact.get("firstName").toLowerCase().indexOf(criterion) !== -1
+							|| contact.get("lastName").toLowerCase().indexOf(criterion) !== -1
+							|| contact.get("phoneNumber").toLowerCase().indexOf(criterion) !== -1){
+								return contact;
+							}
+						};		
+					}
+				});
+				
 				var contactsListView = new List.Contacts({
-					collection: contacts
+					collection: filteredContacts
+				});
+				contactsListPanel.on("contacts:filter", function(filterCriterion){
+					filteredContacts.filter(filterCriterion);
 				});
 				contactsListLayout.on("show", function(){
 				   contactsListLayout.panelRegion.show(contactsListPanel);
@@ -23,14 +40,15 @@ ContactManager.module("ContactsApp.List", function(List, ContactManager, Backbon
 						model: newContact,
 					});
 					view.on("form:submit", function(data){
-						var highestId = contacts.max(function(c){ return c.id});
-						highestId = highestId.get("id");
+						var highestId = contacts.max(function(c){ return c.id; }).get("id");
 						data.id = highestId + 1;
 						if(newContact.save(data)){
 							contacts.add(newContact);
 							view.trigger("dialog:close");
-							contactsListView.children.findByModel(newContact);
-							flash("success");
+							var newContactView = contactsListView.children.findByModel(newContact);
+							if(newContactView){
+								newContactView.flash("success");
+							}
 						} else {
 							view.triggerMethod("form:data:invalid", newContact.validationError);
 						}

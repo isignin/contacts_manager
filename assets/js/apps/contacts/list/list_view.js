@@ -10,7 +10,15 @@ ContactManager.module("ContactsApp.List", function(List, ContactManager, Backbon
 	    template: "#contact-list-panel",
 	    triggers: {
 		   "click button.js-new": "contact:new"
-  	    }	
+  	    },
+		events: {
+			"submit #filter-form": "filterContacts"
+		},
+		filterContacts: function(e){
+			e.preventDefault();
+			var criterion = this.$(".js-filter-criterion").val();
+			this.trigger("contacts:filter", criterion);
+		}
 	});
 	
 	List.Contact = Marionette.ItemView.extend({

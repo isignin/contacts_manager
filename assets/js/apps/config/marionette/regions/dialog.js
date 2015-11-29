@@ -1,6 +1,5 @@
 Marionette.Region.Dialog = Marionette.Region.extend({
-   onShow: function(view){
-	console.log(this);	
+   onShow: function(view){	
      this.listenTo(view, "dialog:close", this.closeDialog);
         var self = this;
    	    this.$el.dialog({
@@ -13,7 +12,6 @@ Marionette.Region.Dialog = Marionette.Region.extend({
         });
    },
    closeDialog: function(){
-	console.log(this);
      this.stopListening();
      this.close();
      this.$el.dialog("destroy");	
