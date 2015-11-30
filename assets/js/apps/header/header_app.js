@@ -9,7 +9,6 @@ ContactManager.module("HeaderApp", function(Header, ContactManager, Backbone, Ma
     });
     
     Header.on("start", function(){
-	    console.log("I am there now");
 	    API.listHeader();
 	});
 		

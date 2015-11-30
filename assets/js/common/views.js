@@ -12,6 +12,7 @@ ContactManager.module("Common.Views",function(Views, ContactManager, Backbone, M
 			   message: this.message
    		    }
 	   },
+	
 	   onShow: function(){
 	     var opts = {
 		   lines: 13,

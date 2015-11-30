@@ -14,7 +14,7 @@ ContactManager.module("AboutApp", function(AboutApp, ContactManager, Backbone, M
 	  ContactManager.navigate("about");
 	  API.showAbout();
    });	
-   ContactManager.addInitializer(function(){
+   AboutApp.on("start", function(){
      new AboutApp.Router({
 	     controller: API
      });	

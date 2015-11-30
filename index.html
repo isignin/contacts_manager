@@ -27,19 +27,8 @@
     <script type="text/template" id="header-link">
        <a href="#<%= url %>"><%= name %></a>
     </script>
-	<script type="text/template" id="contact-view">
-	   <h1><%= firstName %> <%= lastName %></h1>
-	   <p><strong>Phone Number: </strong> <%= phoneNumber %></p>
-	   <hr />
-	   <div>
-	     <a href="#/contacts/<%= id %>/edit" class="btn btn-small js-edit">
-	          <i class="icon-pencil"></i>
-	                Edit Contact
-         </a>
-	     <a href="#contacts" class="btn btn-small">Return to Contact List</a>
-	    </div>
-	</script>
-	<script type="text/template" id="contact-list">
+
+    <script type="text/template" id="contact-list">
 	   <thead>
 	     <tr>
 	       <th>First Name</th>
@@ -50,6 +39,11 @@
 	    <tbody>
 	    </tbody>
 	</script>
+	
+	<script type="text/template" id="contact-list-none">
+	   <td colspan="3">No contacts to display.</td>
+	</script>
+	
 	<script type="text/template" id="contact-list-item">
 	    <td><%= firstName %></td>
 	    <td><%= lastName %></td>
@@ -65,6 +59,24 @@
 	        </button>
 	    </td>
 	</script>
+	
+	<script type="text/template" id="missing-contact-view">
+	   <div class="alert alert-errors">This contact does not exist!</div>
+	</script>
+	
+	<script type="text/template" id="contact-view">
+	   <h1><%= firstName %> <%= lastName %></h1>
+	   <p><strong>Phone Number: </strong> <%= phoneNumber %></p>
+	   <hr />
+	   <div>
+	     <a href="#/contacts/<%= id %>/edit" class="btn btn-small js-edit">
+	          <i class="icon-pencil"></i>
+	                Edit Contact
+         </a>
+	     <a href="#contacts" class="btn btn-small">Return to Contact List</a>
+	    </div>
+	</script>
+	
 	<script type="text/template" id="loading-view">
 	   <div id="loading-view-text">
 	     <h1><%= title %></h1>
@@ -72,22 +84,7 @@
 	   </div>
 	   <div id="spinner"></div>
 	</script>
-	<script type="text/template" id="contact-list-layout">
-	   <div id="panel-region"></div>
-	   <div id="contacts-region"></div>
-	</script>
-	<script type="text/template" id="contact-list-panel">
-	    <button class="btn btn-primary js-new">New Contact</button>
-	    <form id="filter-form" class="form-search form-inline pull-right">
-	       <div class="input-append">
-	        <input type="text" class="span2 search-query js-filter-criterion">
-	        <button type="submit" class="btn">Filter contacts</button>
-	       </div>
-	    </form>
-	</script>
-	<script type="text/template" id="contact-list-none">
-	   <td colspan="3">No contacts to display.</td>
-	</script>
+	
 	<script type="text/template" id="contact-form">
 	    <form>
 	       <div class="control-group">
@@ -105,14 +102,28 @@
 	       <button class="btn js-submit">Save</button>
 	    </form>
 	</script>
-	<script type="text/template" id="missing-contact-view">
-	   <div class="alert alert-errors">This contact does not exist!</div>
-	</script>  
+	
+	<script type="text/template" id="contact-list-layout">
+	   <div id="panel-region"></div>
+	   <div id="contacts-region"></div>
+	</script>
+	
+	<script type="text/template" id="contact-list-panel">
+	    <button class="btn btn-primary js-new">New Contact</button>
+	    <form id="filter-form" class="form-search form-inline pull-right">
+	       <div class="input-append">
+	        <input type="text" class="span2 search-query js-filter-criterion">
+	        <button type="submit" class="btn">Filter contacts</button>
+	       </div>
+	    </form>
+	</script>
+	 
 	<script type="text/template" id="about-message">
 	    <h1>About this application</h1>
 		<p>This applcation was designed to accompany you during your learning.</p>
 		<p>Hopefully it has served you well!</p>
 	</script>
+	
 	<script src="./assets/js/vendor/jquery-1.10.2.js"></script>
 	<script src="./assets/js/vendor/jquery-ui-1.10.3.js"></script>
 	<script src="./assets/js/vendor/json2.js"></script>
@@ -125,8 +136,6 @@
 	<script src="./assets/js/vendor/spin.js"></script>
 	<script src="./assets/js/vendor/spin.jquery.js"></script>
 	
-	
-	<script src="./assets/js/apps/config/marionette/regions/dialog.js"></script>
 	<script src="./assets/js/app.js"></script>
 	<script src="./assets/js/apps/config/storage/localstorage.js"></script>
 	<script src="./assets/js/entities/common.js"></script>

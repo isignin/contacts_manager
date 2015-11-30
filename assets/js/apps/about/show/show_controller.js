@@ -2,7 +2,7 @@ ContactManager.module("AboutApp.Show", function(Show, ContactManager, Backbone, 
    Show.Controller = { 
 	  showAbout: function(){
 	     var view = new Show.Message();
-	     ContactManager.mainRegion.show(view);	
+	     ContactManager.regions.main.show(view);	
   	   }
 	};	
 });

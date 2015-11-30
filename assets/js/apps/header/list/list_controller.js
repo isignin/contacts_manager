@@ -3,15 +3,19 @@ ContactManager.module("HeaderApp.List", function(List, ContactManager, Backbone,
 	   listHeader: function(){
 	      var links = ContactManager.request("header:entities");
 	      var headers = new List.Headers({collection: links});
+	
 	      headers.on("brand:clicked", function(){
 		      ContactManager.trigger("contacts:list");
 	      });
-	      headers.on("itemview:navigate", function(childView, model){
+	
+	      headers.on("childview:navigate", function(childView, model){
 		      var trigger = model.get("navigationTrigger");
 		      ContactManager.trigger(trigger);
 		 });
-	      ContactManager.headerRegion.show(headers);	
+		
+	      ContactManager.regions.header.show(headers);	
 	   },
+	
 	   setActiveHeader: function(headerUrl){
 	     var links = ContactManager.request("header:entities");
 	     var headerToSelect = links.find(function(header){

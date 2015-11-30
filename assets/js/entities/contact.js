@@ -66,10 +66,9 @@ ContactManager.module("Entities", function(Entities, ContactManager,Backbone, Ma
 			  if(contacts.length === 0){
 				 var models = initializeContacts();
 				 contacts.reset(models);
-				 return promise;
 			   };
 		   });	   
-		   return contacts;
+		   return promise;
 	    },
 	
 	    getContactEntity: function(contactId){

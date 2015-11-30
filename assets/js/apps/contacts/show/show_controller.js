@@ -5,7 +5,7 @@ ContactManager.module("ContactsApp.Show", function(Show, ContactManager, Backbon
 		   title: "Artificial Loading Delay",
 		   message: "Data loading is delayed to demonstrate using a loading view."
     	});
-	   ContactManager.mainRegion.show(loadingView);
+	   ContactManager.regions.main.show(loadingView);
 	
 	   var fetchingContact = ContactManager.request("contact:entity", id);
 	   $.when(fetchingContact).done(function(contact){
@@ -20,7 +20,7 @@ ContactManager.module("ContactsApp.Show", function(Show, ContactManager, Backbon
 		   } else {
 			  contactView = new Show.MissingContact();
 		   }
-		   ContactManager.mainRegion.show(contactView);	
+		   ContactManager.regions.main.show(contactView);	
 	   });
      }	
    }	

@@ -26,6 +26,15 @@ ContactManager.module("ContactsApp", function(ContactsApp, ContactManager, Backb
 		API.listContacts();
 	});
 	
+	ContactManager.on("contacts:filter", function(criterion){
+		if(criterion){
+			ContactManager.navigate("contacts/filter/criterion:" + criterion);
+		}
+		else{
+			ContactManager.navigate("contacts");
+		}
+	});
+	
 	ContactManager.on("contact:show", function(id){
 		ContactManager.navigate("contacts/"+id);
 		API.showContact(id);
@@ -35,17 +44,8 @@ ContactManager.module("ContactsApp", function(ContactsApp, ContactManager, Backb
 	   ContactManager.navigate("contacts/" + id + "/edit");
 	   API.editContact(id);	
 	});
-	
-	ContactManager.on("contacts:filter", function(criterion){
-		if(criterion){
-			ContactManager.navigate("contacts/filter/criterion:" + criterion);
-		}
-		else{
-			ContactManager.navigate("contacts");
-		}
-	});	
 		
-	ContactManager.addInitializer(function(){
+	ContactsApp.on("start", function(){
 		new ContactsApp.Router({
 			controller: API
 		});
